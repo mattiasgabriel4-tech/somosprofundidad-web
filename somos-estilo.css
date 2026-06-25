@@ -63,8 +63,8 @@ img{max-width:100%;}
 .somos-logo-nombre{font-weight:800; color:var(--somos-verde); font-size:1rem;}
 .somos-logo-sub{font-size:.72rem; color:var(--somos-gris); opacity:.75;}
 
-.somos-hamburguesa{
-  display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
+.somos-hamburguesa-base{
+  flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
 }
 .somos-hamburguesa span{width:24px; height:2px; background:var(--somos-verde); border-radius:2px; transition:var(--transicion);}
 
@@ -210,21 +210,41 @@ img{max-width:100%;}
 }
 
 /* ===== RESPONSIVE ===== */
-@media(max-width:780px){
+
+/* Por defecto (mobile): hamburguesa visible, nav oculto */
+.somos-hamburguesa{
+  display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
+}
+.somos-nav{
+  display:none;
+  position:absolute; top:100%; left:0; right:0; background:#fff;
+  flex-direction:column; padding:14px; box-shadow:0 8px 20px rgba(0,0,0,.12);
+  z-index:49;
+}
+.somos-nav.abierto{display:flex;}
+.somos-nav ul{flex-direction:column; align-items:flex-start; gap:6px; width:100%; list-style:none; margin:0; padding:0;}
+.somos-nav ul li{width:100%;}
+.somos-nav a{display:block; width:100%; padding:10px 8px;}
+.somos-header{position:sticky; top:0; overflow:visible;}
+
+/* Desktop: nav horizontal, hamburguesa oculto */
+@media(min-width:900px){
+  .somos-hamburguesa{display:none;}
   .somos-nav{
-    display:none;
-    position:absolute; top:100%; left:0; right:0; background:#fff;
-    flex-direction:column; padding:14px; box-shadow:0 8px 20px rgba(0,0,0,.12);
-    z-index:49;
+    display:flex !important;
+    position:static;
+    flex-direction:row;
+    padding:0;
+    box-shadow:none;
+    background:transparent;
+    z-index:auto;
   }
-  .somos-nav.abierto{display:flex;}
-  .somos-nav ul{flex-direction:column; align-items:flex-start; gap:6px; width:100%;}
-  .somos-nav ul li{width:100%;}
-  .somos-nav a{display:block; width:100%; padding:10px 8px;}
-  .somos-hamburguesa{display:flex;}
-  .somos-header{position:sticky; top:0; overflow:visible;}
+  .somos-nav ul{flex-direction:row; align-items:center; gap:22px; width:auto;}
+  .somos-nav ul li{width:auto;}
+  .somos-nav a{display:inline; width:auto; padding:8px 4px;}
 }
 
+/* Grillas para pantallas medianas */
 @media(min-width:720px){
   .somos-quienes-grid{grid-template-columns:1.3fr 1fr;}
   .somos-cards{grid-template-columns:1fr 1fr;}
