@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada — Somos Más Con Vos</title>
+    <link rel="icon" href="img/logo-somos.png">
+    <link rel="stylesheet" href="somos-estilo.css">
+    <style>
+        .error-404 {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .error-404-numero {
+            font-family: var(--fuente-titulo);
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--somos-amarillo);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+        .error-404 h1 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.8rem;
+            color: var(--somos-verde);
+            margin-bottom: 12px;
+        }
+        .error-404 p {
+            color: var(--somos-gris);
+            font-size: 1rem;
+            max-width: 400px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body>
+    <header class="somos-header">
+        <div class="somos-header-inner">
+            <a href="index.html" class="somos-logo">
+                <img src="img/logo-somos.png" alt="Somos Más Con Vos">
+                <div class="somos-logo-texto">
+                    <span class="somos-logo-nombre">Somos Más Con Vos</span>
+                    <span class="somos-logo-sub">Profundidad · Misiones</span>
+                </div>
+            </a>
+            <button class="somos-hamburguesa" id="somosHamburguesa" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="somos-nav" aria-label="Navegación del partido">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="propuestas.html">Propuestas</a></li>
+                    <li><a href="autoridades.html">Autoridades</a></li>
+                    <li><a href="documentos.html">Documentos</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="afiliacion.html" class="somos-nav-afiliarse">Afiliarme</a></li>
+                    <li><a href="https://gabisanchez.com.ar" target="_blank" rel="noopener" class="btn-volver-gabi">Visitá a nuestro concejal →</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="error-404">
+            <div class="error-404-numero">404</div>
+            <h1>Página no encontrada</h1>
+            <p>La página que buscás no existe o fue movida. Podés volver al inicio y encontrar lo que necesitás.</p>
+            <a href="index.html" class="btn-somos-primario">Volver al inicio</a>
+        </div>
+    </main>
+
+    <footer class="somos-footer">
+        <img class="somos-footer-logo" src="img/logo-somos.png" alt="Somos Más Con Vos">
+        <nav class="somos-redes" aria-label="Redes sociales">
+            <a href="https://www.instagram.com/somos.mas.con.vos" target="_blank" rel="noopener" aria-label="Instagram"><img src="img/instagram.png" alt="Instagram"></a>
+            <a href="https://wa.me/+5493765148121" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/whatsapp.png" alt="WhatsApp"></a>
+            <a href="mailto:contacto.somosmasconvos@gmail.com" aria-label="Email"><img src="img/email.png" alt="Email"></a>
+        </nav>
+        <p id="footer-copy-somos"></p>
+        <a href="https://gabisanchez.com.ar" target="_blank" rel="noopener" class="volver-gabi">Visitá la página de nuestro concejal →</a>
+    </footer>
+
+    <script>document.getElementById("footer-copy-somos").innerHTML="&copy; 2025–"+new Date().getFullYear()+" Somos Más Con Vos · Profundidad, Misiones";</script>
+    <script>
+    (function(){
+        var btn = document.getElementById('somosHamburguesa');
+        var nav = document.querySelector('.somos-nav');
+        if (!btn || !nav) return;
+        btn.addEventListener('click', function(){
+            var abierto = nav.classList.toggle('abierto');
+            btn.classList.toggle('activo', abierto);
+            btn.setAttribute('aria-expanded', String(abierto));
+        });
+        nav.querySelectorAll('a').forEach(function(a){
+            a.addEventListener('click', function(){
+                nav.classList.remove('abierto');
+                btn.classList.remove('activo');
+                btn.setAttribute('aria-expanded','false');
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
