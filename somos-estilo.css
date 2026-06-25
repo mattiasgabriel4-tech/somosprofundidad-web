@@ -51,8 +51,6 @@ img{max-width:100%;}
   background:rgba(255,255,255,.96);
   backdrop-filter:blur(6px);
   border-bottom:1px solid #eee;
-  /* necesario para que el menú mobile se posicione relativo al header */
-  overflow:visible;
 }
 .somos-header-inner{
   max-width:1100px; margin:0 auto;
@@ -216,14 +214,14 @@ img{max-width:100%;}
     display:none;
     position:absolute; top:100%; left:0; right:0; background:#fff;
     flex-direction:column; padding:14px; box-shadow:0 8px 20px rgba(0,0,0,.12);
-    z-index:40;
+    z-index:49;
   }
   .somos-nav.abierto{display:flex;}
   .somos-nav ul{flex-direction:column; align-items:flex-start; gap:6px; width:100%;}
   .somos-nav ul li{width:100%;}
   .somos-nav a{display:block; width:100%; padding:10px 8px;}
   .somos-hamburguesa{display:flex;}
-  .somos-header{position:sticky; top:0; z-index:50;}
+  .somos-header{position:sticky; top:0; overflow:visible;}
 }
 
 @media(min-width:720px){
