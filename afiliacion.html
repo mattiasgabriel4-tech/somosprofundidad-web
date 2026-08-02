@@ -44,6 +44,12 @@
             box-shadow: 0 0 0 3px rgba(30,107,60,0.12);
         }
         .form-grupo textarea { resize: vertical; min-height: 100px; }
+        .form-grupo small {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--somos-gris);
+            margin-top: 4px;
+        }
         .form-fila {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -142,18 +148,9 @@
 
         <div class="afiliacion-contenido">
 
-            <div class="error-msg" id="errorMsg" role="alert">
-                Hubo un problema al enviar el formulario. Por favor intentá de nuevo o escribinos directamente por WhatsApp.
-            </div>
+            <div class="error-msg" id="errorMsg" role="alert"></div>
 
-            <form id="formAfiliacion"
-                  action="https://api.web3forms.com/submit"
-                  method="POST">
-
-                <!-- Web3Forms: clave de acceso y configuración -->
-                <input type="hidden" name="access_key" value="29150b7d-0813-4c88-b68f-b51ae5b0b2cc">
-                <input type="hidden" name="subject" value="Nueva solicitud de afiliación — Somos Más Con Vos">
-                <input type="hidden" name="from_name" value="Somos Más Con Vos — Web">
+            <form id="formAfiliacion" novalidate>
 
                 <p class="form-obligatorio">Los campos marcados con <span>*</span> son obligatorios.</p>
 
@@ -203,6 +200,12 @@
                 <div class="form-grupo">
                     <label for="motivacion">¿Por qué querés sumarte? (opcional)</label>
                     <textarea id="motivacion" name="motivacion" placeholder="Contanos qué te motivó a querer ser parte de Somos Más Con Vos..."></textarea>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="foto_dni">Foto del DNI (frente) <span style="color:#dc2626">*</span></label>
+                    <input type="file" id="foto_dni" name="foto_dni" accept="image/*,.pdf" required>
+                    <small>Formatos aceptados: JPG, PNG o PDF. Máximo 5MB.</small>
                 </div>
 
                 <button type="submit" class="btn-afiliar" id="btnEnviar">
@@ -282,6 +285,53 @@
             });
         })();
     </script>
+    <script>
+        (function(){
+            var form = document.getElementById('formAfiliacion');
+            var btn = document.getElementById('btnEnviar');
+            var errorMsg = document.getElementById('errorMsg');
+            var confirmacion = document.getElementById('confirmacion');
+            var API_URL = 'https://afiliados.somosmasconvos.com.ar/solicitar';
+
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                errorMsg.style.display = 'none';
+
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                var formData = new FormData(form);
+                btn.disabled = true;
+                btn.textContent = 'Enviando...';
+
+                fetch(API_URL, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(res){
+                    return res.json().then(function(data){ return { status: res.status, body: data }; });
+                })
+                .then(function(result){
+                    if (result.status === 201 && result.body.ok) {
+                        form.style.display = 'none';
+                        confirmacion.style.display = 'block';
+                    } else {
+                        errorMsg.textContent = result.body.error || 'Hubo un problema al enviar el formulario. Por favor intentá de nuevo o escribinos directamente por WhatsApp.';
+                        errorMsg.style.display = 'block';
+                        btn.disabled = false;
+                        btn.textContent = 'Enviar solicitud de afiliación';
+                    }
+                })
+                .catch(function(){
+                    errorMsg.textContent = 'Hubo un problema al enviar el formulario. Por favor intentá de nuevo o escribinos directamente por WhatsApp.';
+                    errorMsg.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'Enviar solicitud de afiliación';
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
-
