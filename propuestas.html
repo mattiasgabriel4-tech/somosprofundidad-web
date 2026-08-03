@@ -8,86 +8,106 @@
     <link rel="icon" href="img/logo-somos.png">
     <link rel="stylesheet" href="somos-estilo.css">
     <style>
-        .propuesta-area {
-            margin-bottom: 48px;
-            scroll-margin-top: 90px;
+        .propuestas-intro{
+            text-align:center;
+            max-width:640px;
+            margin:0 auto 44px;
         }
-
-        .propuesta-encabezado {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 20px;
-            padding-bottom: 14px;
-            border-bottom: 2px solid var(--somos-gris-claro);
+        .propuestas-intro .eyebrow{
+            display:block;
+            color:var(--somos-amarillo);
+            font-family:var(--fuente-titulo);
+            text-transform:uppercase;
+            letter-spacing:.12em;
+            font-size:.85rem;
+            margin-bottom:8px;
         }
-
-        .propuesta-encabezado h2 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.4rem;
-            color: var(--somos-verde);
-            margin: 0;
+        .propuestas-intro h1{
+            font-size:clamp(1.7rem,4vw,2.3rem);
+            color:var(--somos-verde);
+            margin-bottom:14px;
         }
-
-        .propuesta-icono {
-            font-size: 1.8rem;
-            flex-shrink: 0;
+        .propuestas-intro p{
+            font-size:1.02rem;
+            color:var(--somos-gris);
+            line-height:1.7;
         }
-
-        .propuesta-item {
-            display: grid;
-            grid-template-columns: 4px 1fr;
-            gap: 0 14px;
-            margin-bottom: 14px;
+        .propuestas-grid{
+            display:grid;
+            grid-template-columns:1fr;
+            gap:18px;
         }
-
-        .propuesta-barra {
-            background-color: var(--somos-amarillo);
-            border-radius: 2px;
-            min-height: 100%;
-            margin-top: 3px;
+        @media(min-width:720px){
+            .propuestas-grid{grid-template-columns:1fr 1fr;}
         }
-
-        .propuesta-cuerpo h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--somos-oscuro);
-            margin-bottom: 4px;
+        .propuesta-card{
+            position:relative;
+            background:var(--blanco);
+            border-radius:var(--radio-lg);
+            padding:30px 24px 24px;
+            box-shadow:var(--sombra-sm);
+            overflow:hidden;
+            border:1px solid #eef2ef;
+            transition:transform var(--transicion), box-shadow var(--transicion);
         }
-
-        .propuesta-cuerpo p {
-            font-size: 0.93rem;
-            color: var(--somos-gris);
-            line-height: 1.7;
+        .propuesta-card:hover{
+            transform:translateY(-4px);
+            box-shadow:var(--sombra-md);
         }
-
-        .pills-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 48px;
+        .propuesta-num{
+            position:absolute;
+            top:-8px;
+            right:12px;
+            font-family:var(--fuente-titulo);
+            font-weight:700;
+            font-size:4.4rem;
+            line-height:1;
+            color:var(--somos-gris-claro);
+            -webkit-text-stroke:1px #e3ece7;
+            z-index:0;
         }
-
-        .pills-nav a {
-            padding: 6px 14px;
-            background-color: var(--blanco);
-            border: 1px solid var(--somos-gris-claro);
-            border-radius: 99px;
-            font-size: 0.83rem;
-            color: var(--somos-verde);
-            font-weight: 500;
-            transition: background-color var(--transicion), color var(--transicion), border-color var(--transicion);
+        .propuesta-card-icono{
+            font-size:1.7rem;
+            margin-bottom:10px;
+            position:relative;
+            z-index:1;
         }
-
-        .pills-nav a:hover {
-            background-color: var(--somos-verde);
-            color: var(--blanco);
-            border-color: var(--somos-verde);
+        .propuesta-card h2{
+            position:relative;
+            z-index:1;
+            font-size:1.18rem;
+            color:var(--somos-verde);
+            margin-bottom:16px;
+            line-height:1.3;
+        }
+        .propuesta-card ul{
+            position:relative;
+            z-index:1;
+            list-style:none;
+            margin:0;
+            padding:0;
+        }
+        .propuesta-card li{
+            font-size:.93rem;
+            color:var(--somos-gris);
+            line-height:1.6;
+            padding:9px 0 9px 20px;
+            position:relative;
+            border-top:1px solid var(--somos-gris-claro);
+        }
+        .propuesta-card li:first-child{
+            border-top:none;
+        }
+        .propuesta-card li::before{
+            content:"—";
+            position:absolute;
+            left:0;
+            color:var(--somos-amarillo);
+            font-weight:700;
         }
     </style>
 </head>
 <body>
-
     <header class="somos-header">
         <div class="somos-header-inner">
             <a href="index.html" class="somos-logo">
@@ -115,109 +135,125 @@
             </nav>
         </div>
     </header>
-
     <main>
-
         <section style="background-color:var(--somos-verde); color:var(--blanco); text-align:center; padding:64px 20px 52px;">
             <h1 style="font-family:var(--fuente-titulo); font-size:clamp(2rem,4vw,3rem); margin-bottom:12px;">Nuestras propuestas</h1>
             <p class="frase" style="font-family:var(--fuente-titulo); font-style:italic; font-size:1.1rem; opacity:0.88; margin-bottom:16px;">"Juntos somos el cambio que Profundidad necesita."</p>
-            <p style="font-size:1rem; opacity:0.80; max-width:580px; margin:0 auto; line-height:1.7;">Un plan construido con los vecinos, basado en las necesidades reales de Profundidad y con la seriedad que merece nuestra comunidad.</p>
+            <p style="font-size:1rem; opacity:0.80; max-width:580px; margin:0 auto; line-height:1.7;">No son promesas de escritorio. Son las cosas que faltan en cada calle, cada barrio y cada casa de Profundidad — y el plan concreto para resolverlas.</p>
         </section>
-
         <section class="somos-seccion fondo-claro">
-            <div class="somos-contenedor">
+            <div class="somos-contenedor" style="max-width:960px;">
+                <div class="propuestas-grid">
 
-                <nav class="pills-nav" aria-label="Ir a cada área">
-                    <a href="#servicios">Servicios</a>
-                    <a href="#educacion">Educación</a>
-                    <a href="#ambiente">Medio ambiente</a>
-                    <a href="#transparencia">Transparencia</a>
-                    <a href="#salud">Salud</a>
-                    <a href="#trabajo">Trabajo</a>
-                    <a href="#vivienda">Vivienda</a>
-                </nav>
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">01</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">🛠️</div>
+                        <h2>Infraestructura y servicios esenciales</h2>
+                        <ul>
+                            <li>Mejora y mantenimiento de calles según relevamiento real de su estado</li>
+                            <li>Diagnóstico y ampliación de la red de agua potable en zonas sin cobertura</li>
+                            <li>Recolección de residuos y alumbrado público eficiente, con reclamos que tienen respuesta y plazo</li>
+                        </ul>
+                    </article>
 
-                <article class="propuesta-area" id="servicios">
-                    <div class="propuesta-encabezado">
-                        <span class="propuesta-icono" aria-hidden="true">🏗️</span>
-                        <h2>Servicios públicos</h2>
-                    </div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Planificación real de alumbrado, agua y recolección</h3><p>Diagnóstico actualizado de cada servicio con cronograma de mejoras público y mecanismo de control vecinal.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Sistema de reclamos con seguimiento</h3><p>Canal de reclamos accesible desde el celular, con número de seguimiento y respuesta en plazo definido.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Transporte eficiente para todos</h3><p>Revisión de frecuencias y recorridos con atención especial a estudiantes, trabajadores y adultos mayores.</p></div></div>
-                </article>
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">02</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">💰</div>
+                        <h2>Alivio para el bolsillo del vecino</h2>
+                        <ul>
+                            <li>Reducción de la carga impositiva municipal</li>
+                            <li>Cuotificación de pagos de inmuebles y otros servicios</li>
+                            <li>Tasas acordes a los ingresos reales de cada familia</li>
+                        </ul>
+                    </article>
 
-                <article class="propuesta-area" id="educacion">
-                    <div class="propuesta-encabezado">
-                        <span class="propuesta-icono" aria-hidden="true">📚</span>
-                        <h2>Juventud y educación</h2>
-                    </div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Oficina municipal de apoyo educativo</h3><p>Acompañamiento a jóvenes en orientación, inscripciones, conectividad y trámites para seguir estudiando.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Reducción de la deserción escolar</h3><p>Políticas activas de acompañamiento socioeducativo y acceso a becas provinciales y nacionales.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Talleres y deporte barrial</h3><p>Apoyo a clubes y espacios culturales. Talleres gratuitos para todas las edades como herramienta de integración comunitaria.</p></div></div>
-                </article>
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">03</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">🎓</div>
+                        <h2>Acompañar a quien estudia</h2>
+                        <ul>
+                            <li>Espacio municipal de trámites, becas y conectividad para estudiantes</li>
+                            <li>Trabajo activo contra el abandono escolar</li>
+                            <li>Espacios de encuentro, deporte y cultura para jóvenes</li>
+                        </ul>
+                    </article>
 
-                <article class="propuesta-area" id="ambiente">
-                    <div class="propuesta-encabezado">
-                        <span class="propuesta-icono" aria-hidden="true">🌳</span>
-                        <h2>Medio ambiente</h2>
-                    </div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Plan de Arbolado Urbano</h3><p>Cada egresado apadrina un árbol. Educación ambiental vinculada con identidad territorial.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Reciclado comunitario y puntos verdes</h3><p>Jornadas periódicas de reciclado y puntos verdes móviles para separación diferenciada de residuos.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Protección de vertientes y monte nativo</h3><p>Ordenanza de protección de vertientes y áreas de recarga hídrica del municipio.</p></div></div>
-                </article>
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">04</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">👴</div>
+                        <h2>Respeto a quienes ya dieron todo</h2>
+                        <ul>
+                            <li>Acompañamiento domiciliario a mayores que viven solos</li>
+                            <li>Salud preventiva llevada al barrio</li>
+                            <li>Orientación municipal para gestiones ante PAMI y ANSES</li>
+                        </ul>
+                    </article>
 
-                <article class="propuesta-area" id="transparencia">
-                    <div class="propuesta-encabezado">
-                        <span class="propuesta-icono" aria-hidden="true">🏛️</span>
-                        <h2>Municipio transparente</h2>
-                    </div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Digitalización de trámites municipales</h3><p>Los trámites más frecuentes disponibles de forma digital. Menos colas, más agilidad.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Presupuesto participativo</h3><p>Una parte del presupuesto municipal decidida directamente por los vecinos mediante votación pública.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Publicación mensual de gastos y sueldos</h3><p>Rendición de cuentas permanente. Todo publicado en la web municipal. La transparencia no es opcional.</p></div></div>
-                </article>
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">05</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">🐾</div>
+                        <h2>Ambiente y convivencia urbana</h2>
+                        <ul>
+                            <li>Forestación urbana y protección de vertientes y monte nativo</li>
+                            <li>Registro municipal de mascotas para vacunación, castración y bienestar animal</li>
+                            <li>Ordenamiento de la tenencia de animales de granja en zona urbana, para una convivencia prolija entre vecinos</li>
+                        </ul>
+                    </article>
 
-                <article class="propuesta-area" id="salud">
-                    <div class="propuesta-encabezado">
-                        <span class="propuesta-icono" aria-hidden="true">🧓</span>
-                        <h2>Salud y adultos mayores</h2>
-                    </div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Programa "Cuidar a quienes nos cuidaron"</h3><p>Visitas domiciliarias y acompañamiento a adultos mayores que viven solos o con dificultades de movilidad.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Operativos barriales de salud preventiva</h3><p>Controles médicos y vacunación llevados directamente a los barrios. Sin colas innecesarias.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Asistencia para trámites de PAMI y ANSES</h3><p>Personal municipal para orientar a vecinos en sus trámites previsionales. Nadie pierde un beneficio por falta de información.</p></div></div>
-                </article>
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">06</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">🔍</div>
+                        <h2>Gestión que se puede controlar</h2>
+                        <ul>
+                            <li>Trámites municipales digitalizados</li>
+                            <li>Parte del presupuesto decidido por votación vecinal</li>
+                            <li>Gastos y sueldos públicos publicados mes a mes</li>
+                        </ul>
+                    </article>
 
-                <article class="propuesta-area" id="trabajo">
-                    <div class="propuesta-encabezado">
-                        <span class="propuesta-icono" aria-hidden="true">💼</span>
-                        <h2>Trabajo y desarrollo local</h2>
-                    </div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Régimen de Inversiones Locales (RIL)</h3><p>Incentivos concretos para que comercios e industrias inviertan en Profundidad y generen empleo genuino.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Fomento de emprendimientos productivos</h3><p>Apoyo técnico y articulación con programas provinciales para emprendedores y productores locales.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Acompañamiento a trabajadores independientes</h3><p>Asesoramiento legal, contable y económico accesible. El municipio tiene que ser un aliado del que produce.</p></div></div>
-                </article>
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">07</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">🌱</div>
+                        <h2>Producir y trabajar en Profundidad</h2>
+                        <ul>
+                            <li>Beneficios para quien invierte y genera empleo local</li>
+                            <li>Acompañamiento a emprendedores y productores</li>
+                            <li>Asesoría accesible para quien trabaja por cuenta propia</li>
+                        </ul>
+                    </article>
 
-                <article class="propuesta-area" id="vivienda">
-                    <div class="propuesta-encabezado">
-                        <span class="propuesta-icono" aria-hidden="true">🏠</span>
-                        <h2>Vivienda y urbanismo</h2>
-                    </div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Diagnóstico del déficit habitacional</h3><p>Relevamiento actualizado de necesidades de vivienda como punto de partida para políticas responsables.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Planificación ordenada del acceso a la tierra</h3><p>Criterios claros y transparentes, sin favoritismos, para el acceso a lotes y viviendas.</p></div></div>
-                    <div class="propuesta-item"><div class="propuesta-barra"></div><div class="propuesta-cuerpo"><h3>Soluciones para jóvenes y familias vulnerables</h3><p>Impulsar soluciones progresivas para quienes más lo necesitan: jóvenes, familias numerosas y personas en situación de vulnerabilidad.</p></div></div>
-                </article>
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">08</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">🏡</div>
+                        <h2>Tierra y vivienda con reglas claras</h2>
+                        <ul>
+                            <li>Relevamiento real del déficit habitacional</li>
+                            <li>Acceso a lotes y viviendas sin favoritismos</li>
+                            <li>Prioridad para jóvenes, familias numerosas y sectores vulnerables</li>
+                        </ul>
+                    </article>
 
-                <div style="background-color:var(--somos-verde); border-radius:var(--radio-lg); padding:36px; text-align:center; color:var(--blanco); margin-top:16px;">
+                    <article class="propuesta-card">
+                        <span class="propuesta-num">09</span>
+                        <div class="propuesta-card-icono" aria-hidden="true">🗺️</div>
+                        <h2>Presencia en los barrios alejados</h2>
+                        <ul>
+                            <li>Delegación municipal de oficinas en el paraje Tacuaruzú</li>
+                            <li>Mantenimiento de caminos y calles de acceso a los barrios alejados, incluyendo los que conducen al cementerio local</li>
+                            <li>Relevamiento de necesidades específicas de cada barrio periférico y del paraje, con obras priorizadas según ese diagnóstico</li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <div style="background-color:var(--somos-verde); border-radius:var(--radio-lg); padding:36px; text-align:center; color:var(--blanco); margin-top:36px;">
                     <h2 style="font-family:var(--fuente-titulo); font-size:1.5rem; margin-bottom:10px;">¿Tenés una propuesta?</h2>
                     <p style="opacity:0.85; max-width:500px; margin:0 auto 24px; font-size:0.97rem; line-height:1.7;">El mejor plan de gobierno es el que se construye escuchando a la gente. Escribinos y sumá tu idea.</p>
                     <a href="contacto.html" class="btn-somos-primario">Escribir al partido</a>
                 </div>
-
             </div>
         </section>
-
     </main>
-
         <!-- FOOTER -->
     <footer class="somos-footer">
         <div class="somos-footer-grid">
@@ -240,7 +276,8 @@
                 <h4>Redes</h4>
                 <nav class="somos-redes" aria-label="Redes sociales">
                     <a href="https://www.instagram.com/somos.mas.con.vos" target="_blank" rel="noopener" aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0
+0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     </a>
                     <a href="https://wa.me/+5493765148121" target="_blank" rel="noopener" aria-label="WhatsApp">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
@@ -254,7 +291,6 @@
         </div>
         <p id="footer-copy-somos" class="somos-footer-bottom"></p>
     </footer>
-
 <script>document.getElementById("footer-copy-somos").innerHTML="&copy; 2025–"+new Date().getFullYear()+" Somos Más Con Vos · Profundidad, Misiones";</script>
     <script>
         (function(){
